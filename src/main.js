@@ -7,13 +7,18 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './assets/css/dashboard.css'
 import './assets/css/fontawesome.css'
+import store from './store'
+import messages from './assets/js/common/messages'
 
-Vue.config.productionTip = false
 Vue.use(VueI18n)
 
 Vue.config.productionTip = false
 
+//Set variable on the global object.
+global.messages = messages
+
 new Vue({
+  store,
   router,
   i18n,
   render: h => h(App)
