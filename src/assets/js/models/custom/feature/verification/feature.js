@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setupModal, modalH3, modalSimpleText } from '../../../../common/util'
+import { setupModal, modalH3, modalSimpleText, setupModalspinner } from '../../../../common/util'
 let feature_verification = function feature_verification()
 {
   //custom verification menu options and functions
@@ -98,17 +98,21 @@ let feature_verification = function feature_verification()
       if(result!=""){
         alert(result);
       }else{
-        alert("No errors found");
+        //alert("No errors found");
       }
       return result;
   }
   
   // check the void product line
   function Check_void(graph, c_errors, c_overlays, model_component){
+
     // check duplicated name and space in name
     if(check_input_minizinc(graph,c_errors,c_overlays, model_component))
       return;
     if (localStorage["domain_implementation_main_path"]) {
+      let c_header = modalH3("Connecting to the server...");
+      let c_body = modalSimpleText("Initialization...");
+      setupModalspinner(c_header,c_body);
       let errors=[];
 
       let encoder = new mxCodec();
@@ -127,7 +131,9 @@ let feature_verification = function feature_verification()
           selection_parameter[childs[i].getAttribute("label")] = false;
         }
       }
-
+      c_header = modalH3("Connecting to the server...");
+      c_body = modalSimpleText("Waiting for response... ");
+      setupModalspinner(c_header,c_body);
       axios.post(localStorage["domain_implementation_main_path"]+'Verification/check_void', {
         data: xml, name: model_component, param: selection_parameter
       })
@@ -154,6 +160,9 @@ let feature_verification = function feature_verification()
     if(check_input_minizinc(graph,c_errors,c_overlays, model_component))
       return;
     if (localStorage["domain_implementation_main_path"]) {
+      let c_header = modalH3("Connecting to the server...");
+      let c_body = modalSimpleText("Initialization...");
+      setupModalspinner(c_header,c_body);
       let errors=[];
 
       let encoder = new mxCodec();
@@ -173,6 +182,9 @@ let feature_verification = function feature_verification()
         }
       }
 
+      c_header = modalH3("Connecting to the server...");
+      c_body = modalSimpleText("Waiting for response... ");
+      setupModalspinner(c_header,c_body);
       axios.post(localStorage["domain_implementation_main_path"]+'Verification/check_false', {
         data: xml, name: model_component, param: selection_parameter
       })
@@ -199,6 +211,9 @@ let feature_verification = function feature_verification()
     if(check_input_minizinc(graph,c_errors,c_overlays, model_component))
       return;
     if (localStorage["domain_implementation_main_path"]) {
+      let c_header = modalH3("Connecting to the server...");
+      let c_body = modalSimpleText("Initialization...");
+      setupModalspinner(c_header,c_body);
       let errors=[];
 
       let encoder = new mxCodec();
@@ -218,6 +233,9 @@ let feature_verification = function feature_verification()
         }
       }
 
+      c_header = modalH3("Connecting to the server...");
+      c_body = modalSimpleText("Waiting for response... ");
+      setupModalspinner(c_header,c_body);
       axios.post(localStorage["domain_implementation_main_path"]+'Verification/check_dead', {
         data: xml, name: model_component, param: selection_parameter
       })
@@ -273,6 +291,9 @@ let feature_verification = function feature_verification()
     if(check_input_minizinc(graph,c_errors,c_overlays, model_component))
       return;
     if (localStorage["domain_implementation_main_path"]) {
+      let c_header = modalH3("Connecting to the server...");
+      let c_body = modalSimpleText("Initialization...");
+      setupModalspinner(c_header,c_body);
       let errors=[];
 
       let encoder = new mxCodec();
@@ -310,6 +331,9 @@ let feature_verification = function feature_verification()
         }
       }
 
+      c_header = modalH3("Connecting to the server...");
+      c_body = modalSimpleText("Waiting for response... ");
+      setupModalspinner(c_header,c_body);
       axios.post(localStorage["domain_implementation_main_path"]+'Verification/check_optional', {
         data: xml, name: model_component, param: selection_parameter, optional: optionals
       })
@@ -365,6 +389,9 @@ let feature_verification = function feature_verification()
     if(check_input_minizinc(graph,c_errors,c_overlays, model_component))
       return;
     if (localStorage["domain_implementation_main_path"]) {
+      let c_header = modalH3("Connecting to the server...");
+      let c_body = modalSimpleText("Initialization...");
+      setupModalspinner(c_header,c_body);
       let errors=[];
 
       let encoder = new mxCodec();
@@ -386,6 +413,10 @@ let feature_verification = function feature_verification()
 
       // check if feature model has solutions without cardinality
       let check_xml = xml.split("bundleType=\"RANGE\"").join("bundleType=\"AND\"");
+
+      c_header = modalH3("Connecting to the server...");
+      c_body = modalSimpleText("Waiting for response... ");
+      setupModalspinner(c_header,c_body);
       axios.post(localStorage["domain_implementation_main_path"]+'Verification/check_multi_conflict', {
         data: xml, name: model_component, param: selection_parameter, check_xml: check_xml
       })

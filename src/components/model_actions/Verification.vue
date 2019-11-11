@@ -4,12 +4,13 @@
       {{ $t("verification") }}
     </a>
     <div id="verification-menu" class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a @click="test()" class="dropdown-item">Test sending the model</a>
       <a data-menudisplay="['adaptation_state','adaptation_hardware','adaptation_binding_state_hardware']" @click="test_web()" class="dropdown-item">Test sending the model to microservices</a>
       <a v-for="item in menu_options" v-bind:key="item.label" v-on:click="clear_overlays(); item.func(current_graph, cell_errors, cell_overlays, getmodel_component);" class="dropdown-item">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" v-if="item.spinner"></span>
         {{ item.label }}
       </a>
       <a @click="clear_overlays()" class="dropdown-item">Clear errors</a>
+      <a @click="test()" class="dropdown-item">Test connection to server</a>
     </div>
   </li>
 </template>

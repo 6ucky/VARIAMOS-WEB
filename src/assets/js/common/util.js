@@ -6,6 +6,28 @@ export function jsUcfirst(string)
 }
 
 // setup main modal view
+export function setupModalspinner(header_content,body_content="",footer_content="") 
+{
+    let main_modal=document.getElementById('main_modal');
+    let main_modal_header=document.getElementById('main_modal_header');
+    let main_modal_body=document.getElementById('main_modal_body');
+    let main_modal_footer=document.getElementById('main_modal_footer');
+    main_modal_header.innerHTML="";
+    main_modal_body.innerHTML="";
+    main_modal_footer.innerHTML="";
+    main_modal.style.display="inline-table";
+
+    main_modal_header.appendChild(header_content);
+    if(body_content!=""){main_modal_body.appendChild(body_content);}
+    let spinner = document.createElement('span');
+    spinner.className = 'spinner-border spinner-border-sm';
+    spinner.role = 'status';
+    main_modal_body.appendChild(spinner);
+    if(footer_content!=""){main_modal_footer.appendChild(footer_content);}
+    let button_close = document.getElementById('modal_button_close');
+    button_close.style.visibility = 'hidden';
+}
+
 export function setupModal(header_content,body_content="",footer_content="") 
 {
     let main_modal=document.getElementById('main_modal');
@@ -16,6 +38,8 @@ export function setupModal(header_content,body_content="",footer_content="")
     main_modal_body.innerHTML="";
     main_modal_footer.innerHTML="";
     main_modal.style.display="inline-table";
+    let button_close = document.getElementById('modal_button_close');
+    button_close.style.visibility = 'visible';
 
     main_modal_header.appendChild(header_content);
     if(body_content!=""){main_modal_body.appendChild(body_content);}

@@ -94,7 +94,7 @@
                           </div>
                           <div class="modal-footer">
                             <div id="main_modal_footer"></div>
-                            <div><button @click="hide_modal()">{{ $t("modal_close") }}</button></div>
+                            <div><button id="modal_button_close" @click="hide_modal()">{{ $t("modal_close") }}</button></div>
                           </div>
                         </div>
                       </div>
